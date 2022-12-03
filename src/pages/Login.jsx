@@ -40,7 +40,7 @@ const Login = () => {
       onSubmit={handleLogin}
       className="flex justify-center items-center h-screen"
     >
-      <form className="flex flex-col justify-center items-center gap-8  w-[50%]">
+      <form className="flex flex-col justify-center items-center gap-8  w-[90%]  xl:w-[50%]">
         <h1 className="text-[2rem] text-primary-font">Login</h1>
 
         <input
@@ -49,7 +49,7 @@ const Login = () => {
           id="email"
           placeholder="email"
           required
-          className="rounded leading-10 pl-3 text-primary-bg w-[40%]"
+          className="rounded leading-10 pl-3 text-primary-bg w-[75%] sm:w-[60%] md:w-[40%]"
           onChange={(e) => setEmail(e.target.value.trim())}
         />
 
@@ -57,13 +57,13 @@ const Login = () => {
           type="password"
           name="password"
           id="password"
-          className="rounded leading-10 pl-3 text-primary-bg w-[40%]"
+          className="rounded leading-10 pl-3 text-primary-bg w-[75%] sm:w-[60%] md:w-[40%]"
           placeholder="password"
           onChange={(e) => setPassword(e.target.value.trim())}
         />
         <button
           type="submit"
-          className="flex justify-center items-center gap-1 text-lg p-1 w-[20%] rounded border-solid border-2 opacity-80 hover:opacity-100 hover:bg-primary-font border-primary-font text-primary-font hover:text-primary-bg"
+          className="flex justify-center items-center gap-1 text-lg p-1 w-[25%] xl:w-[20%] rounded border-solid border-2 opacity-80 hover:opacity-100 hover:bg-primary-font border-primary-font text-primary-font hover:text-primary-bg"
         >
           {isLoading && <Loader />}
           <p>Login</p>
