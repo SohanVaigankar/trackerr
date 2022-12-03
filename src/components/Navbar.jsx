@@ -22,11 +22,11 @@ const Navbar = () => {
       <ul className="flex items-center  justify-center  text-[1.2rem] font-[400] gap-20 sm:gap-10">
         {user !== null && user !== undefined ? (
           <>
-            <Link to="#" className=" flex justify-center items-center gap-2">
+            <Link to="#" className=" flex justify-center items-center gap-2 px-2 py-1 rounded hover:bg-[#00000022]">
               <BsPersonCircle />
               <p className="text-[1.2rem]">{`${user.name.split(" ")[0]}`}</p>
             </Link>
-            <Link to="/" onClick={() => dispatch({ type: LOGOUT })}>
+            <Link to="/" onClick={() => dispatch({ type: LOGOUT })} className="hover:bg-[#ec585879] px-2 py-1 rounded">
               logout
             </Link>
           </>

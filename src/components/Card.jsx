@@ -13,7 +13,7 @@ const Card = ({ data }) => {
 
   return (
     <div
-      className="bg-primary-bg text-primary-font  rounded-xl cursor-pointer shadow-lg hover:scale-[1.015] overflow-hidden md:max-w-[20rem] min-h-[8rem] broder-solid border-2 border-[#00000034]"
+      className="bg-primary-bg text-primary-font  rounded-xl cursor-pointer shadow-lg hover:scale-[1.015] overflow-hidden md:max-w-[20rem] min-h-[8rem] broder-solid border-2 border-[#00000034] hover:bg-[#1823fb70]"
       onClick={handleVehicleInfo}
     >
       <div className="flex justify-between items-center relative px-5 py-4 bg-[#00000021]">
