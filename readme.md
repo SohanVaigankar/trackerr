@@ -1,4 +1,4 @@
-# [TRACKERR]()
+# [TRACKERR](https://lokatte-trackerr.netlify.app/)
 
 - tracknerd frontend dev assignment
 
@@ -6,7 +6,10 @@
 
 - Reactjs web app created using vite framework and a whole bunch of javascript
 - used TailwindCSS for styling
+- react router dom v6 for routing between pages
 - ContextAPI with useReducer for state management
+- react-google-maps/api & firebase realtime db for rendering map
+- react-icons library for few icons
 
 ## Procedure to install & run on local machine
 
