@@ -1,50 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// context
-import { LOAD_VEHICLE_LIVE_INFO } from "../context/action.types";
-import { useUserContext } from "../context/UserContext";
-// firebase
-import { db } from "../configs/firebase.config";
-import { ref, onValue } from "firebase/database";
+
+// utils
+import { getLiveData } from "../utils/getLiveData";
 
 const Card = ({ data }) => {
   const navigate = useNavigate();
-  const { dispatch } = useUserContext();
+  // state to keep track of live data
   const [liveData, setLiveData] = useState(null);
 
   // vehicle live info from firebase real time db
   useEffect(() => {
-    const getLocation = () => {
-      const vehicleMapRef = ref(db, `${data.id}-${data.registrationNumber}`);
-      // const vehicleMapRef = ref(db);
-      onValue(
-        vehicleMapRef,
-        (snapshot) => {
-          const updatedMapData = snapshot.val();
-          // console.log(updatedMapData);
-          updatedMapData == null
-            ? setLiveData(null)
-            : setLiveData(updatedMapData);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    };
-
-    getLocation();
-
-    // return () => {
-    //   getLocation();
-    // };
+    getLiveData(`${data.id}-${data.registrationNumber}`, setLiveData);
   }, []);
-
-  useEffect(() => {
-    dispatch({
-      type: LOAD_VEHICLE_LIVE_INFO,
-      payload: { liveData: liveData },
-    });
-  }, [liveData]);
 
   // fn to handle clicks to check specific vehicle info
   const handleVehicleInfo = (e) => {

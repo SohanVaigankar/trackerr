@@ -5,7 +5,7 @@ const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || null,
   loadingVehicles: false,
   vehicles: JSON.parse(localStorage.getItem("vehicles")) || [],
-  liveData: null,
+  // liveData: null,
 };
 
 // user context
@@ -30,7 +30,7 @@ export const UserContextProvider = ({ children }) => {
     user: state.user,
     vehicles: state.vehicles,
     loadingVehicles: state.loadingVehicles,
-    liveData: state.liveData,
+    // liveData: state.liveData,
     dispatch,
   };
 

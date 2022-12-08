@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 // context
 import { useUserContext } from "../context/UserContext";
-import { LOAD_VEHICLE_LIVE_INFO } from "../context/action.types";
 
 // icons
 import { BsXLg } from "react-icons/bs";
@@ -12,18 +11,33 @@ import Navbar from "../components/Navbar";
 import InfoGridCard from "../components/InfoGridCard";
 import LiveMap from "../components/LiveMap";
 
+// utils
+import { getLiveData } from "../utils/getLiveData";
+
 const VehicleInfo = () => {
   // console.log("VehicleInfo.jsx");
-  const { vehicles, liveData, dispatch } = useUserContext();
+  const { vehicles, dispatch } = useUserContext();
   const navigate = useNavigate();
+  // destructuring params to get vehicle id and vrn
   const { vid, vrn } = useParams();
+  // state to track the general data of the selected vehicle 
   const [data, setData] = useState([]);
+  // state to keep track of vehicle info
   const [info, setInfo] = useState([]);
+  // state to store live data of the vehicle
+  const [liveData, setLiveData] = useState(null);
 
+  // filtering out the selected vehicle
   useEffect(() => {
     setData(vehicles.filter((vehicle) => parseInt(vid) == vehicle.id)[0]);
   }, [vid]);
 
+  // vehicle live info from firebase real time db
+  useEffect(() => {
+    getLiveData(`${vid}-${vrn}`, setLiveData);
+  }, []);
+
+  // array containing vehicle info properties
   const infoProps = [
     { title: "Registration Number:", infoValue: data?.registrationNumber },
     { title: "Make:", infoValue: data?.make },
@@ -74,13 +88,14 @@ const VehicleInfo = () => {
       infoValue:
         liveData?.timestamp == undefined
           ? "--"
-          :  Date(liveData?.timestamp).toLocaleString('en-US').slice(0,21),
+          : Date(liveData?.timestamp).toLocaleString("en-US").slice(0, 21),
     },
   ];
 
+  // updating the info when the data or livedata updates
   useEffect(() => {
     data && setInfo(infoProps);
-  }, [data]);
+  }, [data, liveData]);
 
   return (
     <div>
@@ -89,16 +104,12 @@ const VehicleInfo = () => {
         <BsXLg
           className="text-primary-bg absolute right-2 top-1 m-5 cursor-pointer hover:text-[#ef3b3ba3] hover:scale-[1.3]"
           onClick={() => {
-            dispatch({
-              type: LOAD_VEHICLE_LIVE_INFO,
-              payload: { liveData: null },
-            });
             navigate(-1);
           }}
         />
         {/* map container */}
-        <div className="flex-1 flex flex-col h-[50vh] md:h-[70vh] lg:h-full w-full gap-4">
-          <p className="text-[1.5rem]  text-primary-bg font-[600] w-[70%] sm:w-full mx-auto">
+        <div className="flex-1 flex flex-col h-[50vh] md:h-[70vh] lg:h-full w-full gap-4 mt-5 sm:mt-5 md:mt-0">
+          <p className="text-[1.5rem]  text-primary-bg font-[600] pl-5 w-full mx-auto">
             Vehicle Location
           </p>
           <LiveMap
@@ -108,7 +119,7 @@ const VehicleInfo = () => {
         </div>
         {/* info */}
         <div className="flex flex-col gap-5 ">
-          <p className="text-[1.5rem] md:pl-5 text-primary-bg font-[600] w-[70%] sm:w-full mx-auto">
+          <p className="text-[1.5rem] md:pl-5 text-primary-bg font-[600] pl-5 w-full mx-auto">
             Vehicle Information
           </p>
           <InfoGridCard data={info} />

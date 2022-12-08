@@ -1,6 +1,6 @@
 import {
   LOADING_VEHICLES,
-  LOAD_VEHICLE_LIVE_INFO,
+  // LOAD_VEHICLE_LIVE_INFO,
   FETCH_ALL_VEHICLES,
   LOGIN,
   LOGOUT,
@@ -20,8 +20,8 @@ const UserReducer = (state, action) => {
       };
     case LOADING_VEHICLES:
       return { ...state, loadingVehicles: !state.loadingVehicles };
-    case LOAD_VEHICLE_LIVE_INFO:
-      return { ...state, liveData: action.payload.liveData };
+    // case LOAD_VEHICLE_LIVE_INFO:
+      // return { ...state, liveData: action.payload.liveData };
     case SHOW_LOCATION:
       return { ...state };
     default:
