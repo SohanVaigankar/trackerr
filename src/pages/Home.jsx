@@ -10,6 +10,8 @@ import Navbar from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
 import Gallery from "../components/Gallery";
 
+import { toast } from "react-toastify";
+
 const Home = () => {
   // console.log('Home.jsx')
   const { dispatch, vehicles } = useUserContext();
@@ -45,6 +47,12 @@ const Home = () => {
         dispatch({ type: LOADING_VEHICLES });
       } catch (error) {
         console.log(error);
+        toast(
+          error?.response?.data?.message
+            ? error?.response?.data?.message
+            : error.message,
+          { type: "error" }
+        );
       }
     };
     fetchVehicleData();

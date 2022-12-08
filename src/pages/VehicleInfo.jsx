@@ -52,7 +52,7 @@ const VehicleInfo = () => {
       infoValue:
         liveData?.location?.totalOdometer === undefined
           ? "--"
-          : liveData?.location?.totalOdometer.toLocaleString("en-in") + " KM",
+          : (((liveData?.location?.totalOdometer/1000)).toLocaleString("en-in"))+ " KM",
     },
 
     { title: "Speed Limit:", infoValue: data?.speedLimit + " km/h" },

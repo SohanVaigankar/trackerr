@@ -8,7 +8,7 @@ const Gallery = ({ data, title }) => {
   const { loadingVehicles } = useUserContext();
   return (
     <div className=" md:mt-10 pb-5">
-      <h3 className="text-primary-bg mb-2 text-[2rem] text-center py-10 ">
+      <h3 className="text-primary-bg mb-2 text-[1.7rem] md:text-[2rem] text-center py-10 ">
         {title}
       </h3>
       {loadingVehicles ? (

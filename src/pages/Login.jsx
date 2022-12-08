@@ -7,6 +7,7 @@ import { LOGIN } from "../context/action.types";
 import { useUserContext } from "../context/UserContext";
 
 import Loader from "../components/Loader";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { dispatch } = useUserContext();
@@ -30,6 +31,7 @@ const Login = () => {
         navigate("/");
       } catch (error) {
         console.log(error);
+        toast(error?.response?.data?.message ? error?.response?.data?.message : error.message, {type:"error"})
         setIsLoading(false);
       }
     }
