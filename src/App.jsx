@@ -11,6 +11,7 @@ import VehicleInfo from "./pages/VehicleInfo";
 import Login from "./pages/Login";
 
 const App = () => {
+  // console.log('App.jsx')
   return (
     <div>
       <Routes>

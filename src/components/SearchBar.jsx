@@ -28,7 +28,7 @@ const SearchBar = () => {
 
   return (
     <>
-      <div className=" relative flex justify-center items-center border-2 leading-8 border-solid border-primary-bg bg sm:w-[80%] md:w-[70%] lg:w-[50%] xl:w-[40%] mx-auto rounded  gap-5">
+      <div className=" relative flex justify-center items-center border-2 leading-8 border-solid border-primary-bg bg sm:w-[80%] md:w-[70%] lg:w-[50%] xl:w-[40%] mx-auto rounded lg:my-10 gap-5">
         <input
           type="text"
           className="w-full  bg-primary-font px-5 caret-primary-bg focus-within:border-none"

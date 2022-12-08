@@ -11,8 +11,10 @@ import SearchBar from "../components/SearchBar";
 import Gallery from "../components/Gallery";
 
 const Home = () => {
+  // console.log('Home.jsx')
   const { dispatch, vehicles } = useUserContext();
 
+  // Loading data of all the vehicles of the user
   useEffect(() => {
     const fetchVehicleData = async () => {
       dispatch({ type: LOADING_VEHICLES });
@@ -31,6 +33,7 @@ const Home = () => {
           config
         );
 
+        // console.log(res.data.data) //org data
         await dispatch({
           type: FETCH_ALL_VEHICLES,
           payload: { vehicles: res.data.data[0].vehicles },
@@ -47,7 +50,7 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <div className="w-[95%] md:w-[90%] lg:w-[85%] mx-auto  p-5 bg-primary-font text-secondary-font rounded-xl my-5 pt-24 md:pb-10 lg:py-10">
+      <div className=" w-[95%] md:w-[90%] lg:w-[85%] mx-auto  p-5 bg-primary-font text-secondary-font rounded-xl my-5 lg:mt-14 pt-24 md:pb-10 lg:py-10">
         <SearchBar />
         <Gallery data={vehicles} title="All vehicles:" />
       </div>
