@@ -74,7 +74,7 @@ const VehicleInfo = () => {
       infoValue:
         liveData?.timestamp == undefined
           ? "--"
-          : liveData?.timestamp.slice(11, 19),
+          :  Date(liveData?.timestamp).toLocaleString('en-US').slice(0,21),
     },
   ];
 

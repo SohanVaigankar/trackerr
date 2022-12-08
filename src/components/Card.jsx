@@ -39,13 +39,16 @@ const Card = ({ data }) => {
     // };
   }, []);
 
-  // fn to handle clicks to check specific vehicle info
-  const handleVehicleInfo = async (e) => {
-    e.preventDefault();
-    await dispatch({
+  useEffect(() => {
+    dispatch({
       type: LOAD_VEHICLE_LIVE_INFO,
       payload: { liveData: liveData },
     });
+  }, [liveData]);
+
+  // fn to handle clicks to check specific vehicle info
+  const handleVehicleInfo = (e) => {
+    e.preventDefault();
     navigate(`/vehicle-info/${data?.id}-${data?.registrationNumber}`);
   };
 
@@ -100,7 +103,9 @@ const Card = ({ data }) => {
         <p className="text-[0.7rem] text-center">{`data last updated at ${
           liveData?.timestamp == undefined
             ? "--"
-            : liveData?.timestamp.slice(11, 16)
+            : Date(liveData?.timestamp).toLocaleString("en-US").slice(4, 10) +
+              " " +
+              Date(liveData?.timestamp).toLocaleString("en-US").slice(16, 21)
         }`}</p>
       </div>
     </div>

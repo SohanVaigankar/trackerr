@@ -25,7 +25,7 @@ export const UserContextProvider = ({ children }) => {
     localStorage.setItem("vehicles", JSON.stringify(state.vehicles));
   }, [state.vehicles]);
 
-  // console.log(state.currentVehicle)
+  // console.log(state.liveData)
   const value = {
     user: state.user,
     vehicles: state.vehicles,
