@@ -20,7 +20,7 @@ const VehicleInfo = () => {
   const navigate = useNavigate();
   // destructuring params to get vehicle id and vrn
   const { vid, vrn } = useParams();
-  // state to track the general data of the selected vehicle 
+  // state to track the general data of the selected vehicle
   const [data, setData] = useState([]);
   // state to keep track of vehicle info
   const [info, setInfo] = useState([]);
@@ -52,7 +52,9 @@ const VehicleInfo = () => {
       infoValue:
         liveData?.location?.totalOdometer === undefined
           ? "--"
-          : (((liveData?.location?.totalOdometer/1000)).toLocaleString("en-in"))+ " KM",
+          : parseFloat(
+              (liveData?.location?.totalOdometer / 1000).toFixed(2)
+            ).toLocaleString("en-in") + " KM",
     },
 
     { title: "Speed Limit:", infoValue: data?.speedLimit + " km/h" },
